@@ -26,7 +26,7 @@ class FunctionBot(IRCClient):
         if mo:
             name = mo.group(1)
             arg = msg[mo.end(0):]
-            self.msg(channel, 'Function %s called with arg "%s" by %s.' % (mo.group(1), arg, user))
+            #self.msg(channel, 'Function %s called with arg "%s" by %s.' % (mo.group(1), arg, user))
             return
         mo = self.regex_regex.match(msg)
         if mo:
@@ -35,7 +35,7 @@ class FunctionBot(IRCClient):
             flags = 0
             if target == None:
                 target = user
-            if (channel+user) not in self.linelog:
+            if (channel+target) not in self.linelog:
                 return
             if opt != None:
                 if opt.count('g') == 1:
@@ -46,7 +46,7 @@ class FunctionBot(IRCClient):
             if subs > 0:
                 self.msg(channel, '<%s> %s' % (target, msg))
                 self.linelog[channel+target] = msg
-            self.msg(channel, 'Regex! "%s" "%s" "%s" for %s' % (pat,repl,opt,target))
+            #self.msg(channel, 'Regex! "%s" "%s" "%s" for %s' % (pat,repl,opt,target))
             return
         self.linelog[channel+user] = msg
             
