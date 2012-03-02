@@ -44,7 +44,7 @@ class FunctionBot(IRCClient):
                     flags = re.I
             msg, subs = re.subn(pat, repl, self.linelog[channel+target], count, flags)
             if len(msg) > self.factory.settings.REGEX_MAXLEN:
-                self.msg(channel, '/me refuses to flood.')
+                self.describe(channel, '/me refuses to flood.')
                 msg = msg[:self.factory.settings.REGEX_MAXLEN]
             if subs > 0:
                 self.msg(channel, '<%s> %s' % (target, msg))
