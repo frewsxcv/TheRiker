@@ -43,6 +43,9 @@ class FunctionBot(IRCClient):
                 if opt.count('i') == 1:
                     flags = re.I
             msg, subs = re.subn(pat, repl, self.linelog[channel+target], count, flags)
+            if len(msg) > self.factory.settings.REGEX_MAXLEN:
+                self.msg(channel, '/me refuses to flood.')
+                msg = msg[:self.factory.settings.REGEX_MAXLEN]
             if subs > 0:
                 self.msg(channel, '<%s> %s' % (target, msg))
                 self.linelog[channel+target] = msg
@@ -63,6 +66,7 @@ class FunctionBotFactory(ReconnectingClientFactory):
         p.password = self.settings.PASSWORD
         p.realname = self.settings.REALNAME
         p.username = self.settings.USERNAME
+        p.lineRate = self.settings.LINERATE
         p.linelog = {}
         return p
 

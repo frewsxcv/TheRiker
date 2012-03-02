@@ -1,6 +1,7 @@
 HOST = 'chat.freenode.net'
 PORT = 6667
 SSL = False
+LINERATE = 0.5
 
 NICKNAME = 'TheRiker'
 PASSWORD = ''
@@ -9,6 +10,8 @@ USERNAME = None
 
 REJOIN_ON_KICK = True
 REJOIN_DELAY = 15
+
+REGEX_MAXLEN = 320
 
 CHANNELS = (
 )
